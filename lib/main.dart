@@ -4,8 +4,11 @@ import 'package:project_flutter/bloc/location/location_bloc.dart';
 import 'package:project_flutter/home.dart';
 import 'package:project_flutter/weather.dart';
 import 'routes/route.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+void main() async{
+  // await dotenv.load(fileName: ".env");
+  await dotenv.load();
   runApp(MyApp());
 }
 

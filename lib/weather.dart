@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'model/location.dart';
 
 @RoutePage()
@@ -20,6 +21,8 @@ class _WeatherState extends State<Weather> {
   late double lon;
   late String city;
   late String country;
+  final apikey=dotenv.env["API_KEY"];
+
   
   @override
   void initState() {
@@ -29,6 +32,7 @@ class _WeatherState extends State<Weather> {
     city = widget.list.city?? "NA";
     country = widget.list.country?? "NA";
     
+    // print(apikey);
     // print(lat);
     // print(lon);
     getData();
@@ -36,7 +40,9 @@ class _WeatherState extends State<Weather> {
 
   void getData() async{
   try{
-  var response = await Dio().get('https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=40534e89a870f25c608e011f0f4db92c');
+   
+    
+  var response = await Dio().get('https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$apikey');
   
   setState(() {
     jsonresponse = response.data;
